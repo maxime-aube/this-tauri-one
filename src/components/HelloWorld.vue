@@ -1,9 +1,14 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+  import { ref } from 'vue'
+  import { invoke } from '@tauri-apps/api'
 
-defineProps<{ msg: string }>()
+  defineProps<{ msg: string }>()
 
-const count = ref(0)
+  const count = ref(0)
+
+  // `invoke` returns a Promise
+  invoke('greet', { name: 'from that fucking tauri' }).then(response => console.log(response))
+
 </script>
 
 <template>
